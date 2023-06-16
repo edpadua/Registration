@@ -1,15 +1,16 @@
 import { useState } from 'react'
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import './App.css'
 
+import LoginForm from './Components/LoginForm'
+
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
-      
+      <LoginForm/>
+
     </>
   )
 }
