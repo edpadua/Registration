@@ -16,19 +16,30 @@ function LoginForm() {
 
 
   return (
-    <form className={styles.form} onSubmit={onSubmitForm}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 
-      <input type="text" name="nome" placeholder='Digite o seu nome' {...register("name"), {
+      <input type="text" name="nome" placeholder='Digite o seu nome' {...register("name", {
         required: true
-      }} />
+      })} />
+      
+      <input type="text" name="email" placeholder='Digite o seu e-mail' {...register("email", {
+        required: true,
+        pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/
+      })} />
+      {errors.email && errors.email.type === "required" && (
+        <p className="errorMsg">Email is required.</p>
+      )}
+      {errors.email && errors.email.type === "pattern" && (
+        <p className="errorMsg">Email is not valid.</p>
+      )}
 
-      <input type="text" name="email" placeholder='Digite o seu e-mail' {...register("email"), {
-        required: true
-      }} />
 
-      <input type="password" name="password" {...register("password"), {
-        required: true, minLength: 6
-      }} />
+      <input type="password" name="password" {...register("password",{
+        required: true,
+        minLength: 6
+      })} />
+
+      <button type="submit">Login</button>
     </form>
   )
 }
